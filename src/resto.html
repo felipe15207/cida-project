@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+      .about__footer {
+  display: grid;
+  grid-template-columns: 1fr 0.7fr;
+  gap: 70px;
+
+  align-items: center;
+
+  margin-top: 80px;
+  padding-top: 60px;
+
+  border-top: 1px solid #e2e8f0;
+}
+
+.about__footer-label {
+  display: block;
+  margin-bottom: 12px;
+
+  color: #64748b;
+
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.about__footer h3 {
+  max-width: 600px;
+  margin: 0;
+
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+}
+
+.about__footer h3 span {
+  color: #2563eb;
+}
+
+.about__footer p {
+  margin: 0;
+
+  color: #64748b;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+@media (max-width: 900px) {
+  .about__footer {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+}
+
+@media (max-width: 600px) {
+  .about__footer {
+    margin-top: 60px;
+    padding-top: 45px;
+  }
+}
+    </style>
+</head>
+<body>
+    <div className="about__footer">
+          <div>
+            <span className="about__footer-label">Projeto universitário</span>
+
+            <h3>
+              Conhecimento que se transforma em <span>solução.</span>
+            </h3>
+          </div>
+
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+            Fugit blanditiis officia quibusdam. repellat maiores eligendi!
+          </p>
+        </div>
+</body>
+</html>

@@ -1,0 +1,1935 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Projeto Universitário | InovaCampus</title>
+    <meta
+        name="description"
+        content="Projeto universitário voltado à inovação, pesquisa e desenvolvimento acadêmico."
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+        /* =========================
+           RESET
+        ========================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            color: #172033;
+            background: #ffffff;
+            line-height: 1.6;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        textarea {
+            font: inherit;
+        }
+
+        /* =========================
+           VARIÁVEIS
+        ========================== */
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #0f172a;
+            --accent: #38bdf8;
+
+            --background: #ffffff;
+            --background-light: #f8fafc;
+            --background-blue: #eff6ff;
+
+            --text: #172033;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+
+            --radius: 16px;
+            --container: 1180px;
+
+            --shadow: 0 15px 40px rgba(15, 23, 42, 0.08);
+        }
+
+        /* =========================
+           UTILITÁRIOS
+        ========================== */
+
+        .container {
+            width: min(90%, var(--container));
+            margin: 0 auto;
+        }
+
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            max-width: 700px;
+            margin: 0 auto 60px;
+            text-align: center;
+        }
+
+        .section-tag {
+            display: inline-block;
+            margin-bottom: 12px;
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .section-title {
+            margin-bottom: 18px;
+            color: var(--secondary);
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 1.15;
+        }
+
+        .section-description {
+            color: var(--text-light);
+            font-size: 1.05rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+
+            padding: 13px 22px;
+
+            border: 0;
+            border-radius: 10px;
+
+            background: var(--primary);
+            color: white;
+
+            font-weight: 600;
+            cursor: pointer;
+
+            transition:
+                transform 0.2s ease,
+                background 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            color: white;
+            background: var(--primary);
+        }
+
+        /* =========================
+           HEADER
+        ========================== */
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.7);
+
+            backdrop-filter: blur(12px);
+        }
+
+        .navbar {
+            height: 76px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            color: var(--secondary);
+            font-size: 1.2rem;
+            font-weight: 800;
+        }
+
+        .logo-icon {
+            width: 38px;
+            height: 38px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 10px;
+
+            background: linear-gradient(
+                135deg,
+                var(--primary),
+                var(--accent)
+            );
+
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+
+            list-style: none;
+        }
+
+        .nav-link {
+            position: relative;
+
+            color: #475569;
+            font-size: 0.92rem;
+            font-weight: 500;
+
+            transition: color 0.2s ease;
+        }
+
+        .nav-link::after {
+            content: "";
+
+            position: absolute;
+            left: 0;
+            bottom: -7px;
+
+            width: 0;
+            height: 2px;
+
+            background: var(--primary);
+
+            transition: width 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+
+            width: 42px;
+            height: 42px;
+
+            border: 0;
+            border-radius: 10px;
+
+            background: var(--background-light);
+            color: var(--secondary);
+
+            font-size: 1.3rem;
+            cursor: pointer;
+        }
+
+        /* =========================
+           HERO
+        ========================== */
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+
+            min-height: 720px;
+            padding-top: 76px;
+
+            display: flex;
+            align-items: center;
+
+            background:
+                radial-gradient(
+                    circle at 80% 20%,
+                    rgba(56, 189, 248, 0.18),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #eff6ff 0%,
+                    #ffffff 55%,
+                    #f8fafc 100%
+                );
+        }
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+            width: 450px;
+            height: 450px;
+
+            right: -150px;
+            bottom: -180px;
+
+            border-radius: 50%;
+
+            background: rgba(37, 99, 235, 0.08);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .hero-text {
+            max-width: 680px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            margin-bottom: 20px;
+            padding: 7px 12px;
+
+            border: 1px solid #bfdbfe;
+            border-radius: 50px;
+
+            background: #dbeafe;
+            color: #1d4ed8;
+
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .hero-title {
+            margin-bottom: 22px;
+
+            color: var(--secondary);
+            font-size: clamp(2.7rem, 5vw, 4.5rem);
+            line-height: 1.05;
+            letter-spacing: -2px;
+        }
+
+        .hero-title span {
+            color: var(--primary);
+        }
+
+        .hero-description {
+            max-width: 600px;
+            margin-bottom: 30px;
+
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .hero-visual {
+            position: relative;
+        }
+
+        .hero-card {
+            position: relative;
+
+            padding: 35px;
+
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 28px;
+
+            background: rgba(255, 255, 255, 0.75);
+
+            box-shadow: 0 30px 70px rgba(30, 64, 175, 0.14);
+
+            backdrop-filter: blur(15px);
+        }
+
+        .visual-icon {
+            width: 70px;
+            height: 70px;
+
+            display: grid;
+            place-items: center;
+
+            margin-bottom: 25px;
+
+            border-radius: 20px;
+
+            background: #dbeafe;
+            color: var(--primary);
+
+            font-size: 2rem;
+        }
+
+        .hero-card h3 {
+            margin-bottom: 10px;
+            color: var(--secondary);
+            font-size: 1.5rem;
+        }
+
+        .hero-card p {
+            margin-bottom: 25px;
+            color: var(--text-light);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .stat {
+            padding: 18px;
+
+            border-radius: 12px;
+
+            background: var(--background-light);
+
+            text-align: center;
+        }
+
+        .stat strong {
+            display: block;
+
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .stat span {
+            color: var(--text-light);
+            font-size: 0.75rem;
+        }
+
+        /* =========================
+           SOBRE
+        ========================== */
+
+        .about {
+            background: white;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-image {
+            min-height: 450px;
+
+            display: flex;
+            align-items: flex-end;
+
+            padding: 30px;
+
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(37, 99, 235, 0.85),
+                    rgba(14, 165, 233, 0.8)
+                ),
+                #2563eb;
+
+            box-shadow: var(--shadow);
+        }
+
+        .about-image-content {
+            width: 100%;
+            padding: 25px;
+
+            border-radius: 18px;
+
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .about-image-content strong {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--secondary);
+            font-size: 1.4rem;
+        }
+
+        .about-image-content span {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .about-content .section-title {
+            margin-top: 8px;
+        }
+
+        .about-content > p {
+            margin-bottom: 25px;
+            color: var(--text-light);
+        }
+
+        .check-list {
+            display: grid;
+            gap: 15px;
+
+            list-style: none;
+        }
+
+        .check-list li {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .check {
+            flex: 0 0 25px;
+
+            width: 25px;
+            height: 25px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 50%;
+
+            background: #dbeafe;
+            color: var(--primary);
+
+            font-size: 0.75rem;
+            font-weight: 800;
+        }
+
+        .check-list strong {
+            display: block;
+            margin-bottom: 2px;
+            color: var(--secondary);
+        }
+
+        .check-list span {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* =========================
+           OBJETIVOS
+        ========================== */
+
+        .objectives {
+            background: var(--background-light);
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            padding: 32px;
+
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+
+            background: white;
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+            box-shadow: var(--shadow);
+        }
+
+        .card-icon {
+            width: 55px;
+            height: 55px;
+
+            display: grid;
+            place-items: center;
+
+            margin-bottom: 22px;
+
+            border-radius: 14px;
+
+            background: var(--background-blue);
+            color: var(--primary);
+
+            font-size: 1.4rem;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+
+        .card p {
+            color: var(--text-light);
+            font-size: 0.93rem;
+        }
+
+        /* =========================
+           PROJETOS
+        ========================== */
+
+        .projects {
+            background: white;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .project-card {
+            overflow: hidden;
+
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+
+            background: white;
+
+            transition: transform 0.25s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-cover {
+            height: 190px;
+
+            display: flex;
+            align-items: flex-end;
+
+            padding: 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #38bdf8
+                );
+        }
+
+        .project-card:nth-child(2) .project-cover {
+            background:
+                linear-gradient(
+                    135deg,
+                    #7c3aed,
+                    #c084fc
+                );
+        }
+
+        .project-card:nth-child(3) .project-cover {
+            background:
+                linear-gradient(
+                    135deg,
+                    #059669,
+                    #34d399
+                );
+        }
+
+        .project-cover span {
+            padding: 6px 10px;
+
+            border-radius: 7px;
+
+            background: rgba(255, 255, 255, 0.9);
+
+            color: var(--secondary);
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-content h3 {
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+
+        .project-content p {
+            margin-bottom: 18px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .project-link {
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        /* =========================
+           EQUIPE
+        ========================== */
+
+        .team {
+            background: var(--background-light);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .team-card {
+            padding: 25px;
+
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+
+            background: white;
+
+            text-align: center;
+        }
+
+        .avatar {
+            width: 85px;
+            height: 85px;
+
+            display: grid;
+            place-items: center;
+
+            margin: 0 auto 18px;
+
+            border-radius: 50%;
+
+            background: linear-gradient(
+                135deg,
+                #dbeafe,
+                #bae6fd
+            );
+
+            color: var(--primary);
+
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .team-card h3 {
+            margin-bottom: 4px;
+            color: var(--secondary);
+            font-size: 1rem;
+        }
+
+        .team-card p {
+            color: var(--text-light);
+            font-size: 0.8rem;
+        }
+
+        /* =========================
+           CONTATO
+        ========================== */
+
+        .contact {
+            background: white;
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .contact-info h2 {
+            margin-bottom: 15px;
+            color: var(--secondary);
+            font-size: 2rem;
+        }
+
+        .contact-info > p {
+            margin-bottom: 30px;
+            color: var(--text-light);
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 22px;
+        }
+
+        .contact-icon {
+            flex: 0 0 42px;
+
+            width: 42px;
+            height: 42px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 10px;
+
+            background: var(--background-blue);
+            color: var(--primary);
+        }
+
+        .contact-item strong {
+            display: block;
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+
+        .contact-item span {
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+
+        .contact-form {
+            padding: 35px;
+
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+
+            background: white;
+
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+
+            color: var(--secondary);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+
+            padding: 12px 14px;
+
+            border: 1px solid var(--border);
+            border-radius: 9px;
+
+            outline: none;
+
+            color: var(--secondary);
+            background: white;
+
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        .form-message {
+            display: none;
+
+            margin-top: 15px;
+            padding: 12px;
+
+            border-radius: 8px;
+
+            background: #dcfce7;
+            color: #166534;
+
+            font-size: 0.85rem;
+        }
+
+        .form-message.show {
+            display: block;
+        }
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        .footer {
+            padding: 60px 0 25px;
+
+            background: #0f172a;
+            color: white;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 50px;
+
+            padding-bottom: 45px;
+
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-brand p {
+            max-width: 350px;
+            margin-top: 15px;
+
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .footer-title {
+            margin-bottom: 17px;
+
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: grid;
+            gap: 10px;
+
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            font-size: 0.85rem;
+
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            padding-top: 25px;
+
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+
+            color: #64748b;
+            font-size: 0.8rem;
+        }
+
+        /* =========================
+           ANIMAÇÕES
+        ========================== */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(25px);
+
+            transition:
+                opacity 0.7s ease,
+                transform 0.7s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================
+           RESPONSIVIDADE
+        ========================== */
+
+        @media (max-width: 1000px) {
+            .hero-content,
+            .about-grid,
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding-top: 130px;
+                padding-bottom: 80px;
+            }
+
+            .hero-visual {
+                max-width: 650px;
+            }
+
+            .cards,
+            .project-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 760px) {
+            .section {
+                padding: 70px 0;
+            }
+
+            .menu-toggle {
+                display: grid;
+                place-items: center;
+            }
+
+            .nav-menu {
+                position: absolute;
+
+                top: 76px;
+                left: 0;
+                width: 100%;
+
+                padding: 20px;
+
+                flex-direction: column;
+                align-items: stretch;
+                gap: 5px;
+
+                background: white;
+                border-bottom: 1px solid var(--border);
+
+                box-shadow: 0 15px 25px rgba(15, 23, 42, 0.08);
+
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-10px);
+
+                transition:
+                    opacity 0.25s ease,
+                    visibility 0.25s ease,
+                    transform 0.25s ease;
+            }
+
+            .nav-menu.active {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+
+            .nav-link {
+                display: block;
+                padding: 12px;
+            }
+
+            .nav-link::after {
+                display: none;
+            }
+
+            .hero-title {
+                letter-spacing: -1px;
+            }
+
+            .cards,
+            .project-grid,
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                min-height: 330px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .hero-actions .btn {
+                width: 100%;
+            }
+
+            .contact-form {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header class="header">
+        <div class="container navbar">
+
+            <a href="#inicio" class="logo">
+                <span class="logo-icon">I</span>
+                <span>InovaCampus</span>
+            </a>
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                aria-label="Abrir menu"
+                aria-expanded="false"
+            >
+                ☰
+            </button>
+
+            <nav>
+                <ul class="nav-menu" id="navMenu">
+                    <li>
+                        <a href="#inicio" class="nav-link">Início</a>
+                    </li>
+
+                    <li>
+                        <a href="#sobre" class="nav-link">Sobre</a>
+                    </li>
+
+                    <li>
+                        <a href="#objetivos" class="nav-link">Objetivos</a>
+                    </li>
+
+                    <li>
+                        <a href="#projetos" class="nav-link">Projetos</a>
+                    </li>
+
+                    <li>
+                        <a href="#equipe" class="nav-link">Equipe</a>
+                    </li>
+
+                    <li>
+                        <a href="#contato" class="nav-link">Contato</a>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <main>
+
+        <!-- =========================
+             HERO
+        ========================== -->
+
+        <section class="hero" id="inicio">
+            <div class="container hero-content">
+
+                <div class="hero-text reveal">
+
+                    <span class="hero-badge">
+                        🎓 Projeto de Extensão Universitária
+                    </span>
+
+                    <h1 class="hero-title">
+                        Conhecimento que
+                        <span>transforma</span>
+                        o futuro.
+                    </h1>
+
+                    <p class="hero-description">
+                        Um projeto universitário dedicado à pesquisa,
+                        inovação e desenvolvimento de soluções que
+                        aproximam a universidade da sociedade.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="#sobre" class="btn">
+                            Conheça o projeto →
+                        </a>
+
+                        <a href="#contato" class="btn btn-outline">
+                            Entre em contato
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="hero-visual reveal">
+
+                    <div class="hero-card">
+
+                        <div class="visual-icon">
+                            🎓
+                        </div>
+
+                        <h3>
+                            Universidade + Sociedade
+                        </h3>
+
+                        <p>
+                            Conectamos estudantes, professores,
+                            pesquisadores e comunidade para criar
+                            novas possibilidades.
+                        </p>
+
+                        <div class="stats">
+
+                            <div class="stat">
+                                <strong>12+</strong>
+                                <span>Pesquisadores</span>
+                            </div>
+
+                            <div class="stat">
+                                <strong>08</strong>
+                                <span>Projetos</span>
+                            </div>
+
+                            <div class="stat">
+                                <strong>350+</strong>
+                                <span>Participantes</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- =========================
+             SOBRE
+        ========================== -->
+
+        <section class="section about" id="sobre">
+            <div class="container about-grid">
+
+                <div class="about-image reveal">
+                    <div class="about-image-content">
+                        <strong>Inovação através do conhecimento</strong>
+                        <span>
+                            Pesquisa, extensão e impacto social.
+                        </span>
+                    </div>
+                </div>
+
+                <div class="about-content reveal">
+
+                    <span class="section-tag">
+                        Sobre o projeto
+                    </span>
+
+                    <h2 class="section-title">
+                        Uma universidade mais conectada com a sociedade
+                    </h2>
+
+                    <p>
+                        O InovaCampus é um projeto acadêmico que busca
+                        estimular a produção de conhecimento e transformar
+                        ideias desenvolvidas no ambiente universitário em
+                        soluções relevantes para a sociedade.
+                    </p>
+
+                    <ul class="check-list">
+
+                        <li>
+                            <span class="check">✓</span>
+
+                            <div>
+                                <strong>Pesquisa</strong>
+                                <span>
+                                    Desenvolvimento de estudos e produção
+                                    de conhecimento científico.
+                                </span>
+                            </div>
+                        </li>
+
+                        <li>
+                            <span class="check">✓</span>
+
+                            <div>
+                                <strong>Extensão</strong>
+                                <span>
+                                    Aproximação entre universidade e
+                                    comunidade.
+                                </span>
+                            </div>
+                        </li>
+
+                        <li>
+                            <span class="check">✓</span>
+
+                            <div>
+                                <strong>Inovação</strong>
+                                <span>
+                                    Criação de novas ideias, métodos e
+                                    soluções para problemas reais.
+                                </span>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- =========================
+             OBJETIVOS
+        ========================== -->
+
+        <section class="section objectives" id="objetivos">
+
+            <div class="container">
+
+                <div class="section-header reveal">
+
+                    <span class="section-tag">
+                        O que fazemos
+                    </span>
+
+                    <h2 class="section-title">
+                        Nossos principais objetivos
+                    </h2>
+
+                    <p class="section-description">
+                        Trabalhamos para transformar conhecimento
+                        acadêmico em impacto positivo.
+                    </p>
+
+                </div>
+
+                <div class="cards">
+
+                    <article class="card reveal">
+                        <div class="card-icon">🔬</div>
+
+                        <h3>Pesquisa</h3>
+
+                        <p>
+                            Incentivar a pesquisa científica e o
+                            desenvolvimento de novos conhecimentos
+                            dentro da universidade.
+                        </p>
+                    </article>
+
+                    <article class="card reveal">
+                        <div class="card-icon">💡</div>
+
+                        <h3>Inovação</h3>
+
+                        <p>
+                            Estimular ideias inovadoras e desenvolver
+                            soluções para desafios contemporâneos.
+                        </p>
+                    </article>
+
+                    <article class="card reveal">
+                        <div class="card-icon">🌎</div>
+
+                        <h3>Impacto social</h3>
+
+                        <p>
+                            Levar o conhecimento produzido na universidade
+                            para a comunidade e gerar transformação.
+                        </p>
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             PROJETOS
+        ========================== -->
+
+        <section class="section projects" id="projetos">
+
+            <div class="container">
+
+                <div class="section-header reveal">
+
+                    <span class="section-tag">
+                        Nossos projetos
+                    </span>
+
+                    <h2 class="section-title">
+                        Conheça nossas iniciativas
+                    </h2>
+
+                    <p class="section-description">
+                        Alguns dos projetos desenvolvidos pelos
+                        estudantes e pesquisadores.
+                    </p>
+
+                </div>
+
+                <div class="project-grid">
+
+                    <article class="project-card reveal">
+
+                        <div class="project-cover">
+                            <span>TECNOLOGIA</span>
+                        </div>
+
+                        <div class="project-content">
+
+                            <h3>
+                                Tecnologia e Educação
+                            </h3>
+
+                            <p>
+                                Desenvolvimento de ferramentas digitais
+                                para apoiar o ensino e a aprendizagem.
+                            </p>
+
+                            <a href="#contato" class="project-link">
+                                Saiba mais →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="project-card reveal">
+
+                        <div class="project-cover">
+                            <span>PESQUISA</span>
+                        </div>
+
+                        <div class="project-content">
+
+                            <h3>
+                                Laboratório de Pesquisa
+                            </h3>
+
+                            <p>
+                                Estudos multidisciplinares voltados para
+                                problemas atuais da sociedade.
+                            </p>
+
+                            <a href="#contato" class="project-link">
+                                Saiba mais →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="project-card reveal">
+
+                        <div class="project-cover">
+                            <span>SUSTENTABILIDADE</span>
+                        </div>
+
+                        <div class="project-content">
+
+                            <h3>
+                                Universidade Sustentável
+                            </h3>
+
+                            <p>
+                                Ações e pesquisas para promover práticas
+                                sustentáveis no ambiente universitário.
+                            </p>
+
+                            <a href="#contato" class="project-link">
+                                Saiba mais →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             EQUIPE
+        ========================== -->
+
+        <section class="section team" id="equipe">
+
+            <div class="container">
+
+                <div class="section-header reveal">
+
+                    <span class="section-tag">
+                        Nossa equipe
+                    </span>
+
+                    <h2 class="section-title">
+                        Pessoas por trás do projeto
+                    </h2>
+
+                    <p class="section-description">
+                        Estudantes e professores trabalhando juntos
+                        para transformar ideias em resultados.
+                    </p>
+
+                </div>
+
+                <div class="team-grid">
+
+                    <article class="team-card reveal">
+                        <div class="avatar">AS</div>
+                        <h3>Ana Silva</h3>
+                        <p>Coordenadora do projeto</p>
+                    </article>
+
+                    <article class="team-card reveal">
+                        <div class="avatar">JC</div>
+                        <h3>João Costa</h3>
+                        <p>Pesquisador</p>
+                    </article>
+
+                    <article class="team-card reveal">
+                        <div class="avatar">LM</div>
+                        <h3>Larissa Mendes</h3>
+                        <p>Desenvolvedora</p>
+                    </article>
+
+                    <article class="team-card reveal">
+                        <div class="avatar">RP</div>
+                        <h3>Rafael Pereira</h3>
+                        <p>Pesquisador</p>
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CONTATO
+        ========================== -->
+
+        <section class="section contact" id="contato">
+
+            <div class="container contact-wrapper">
+
+                <div class="contact-info reveal">
+
+                    <span class="section-tag">
+                        Fale conosco
+                    </span>
+
+                    <h2>
+                        Vamos construir algo juntos?
+                    </h2>
+
+                    <p>
+                        Tem interesse em participar do projeto,
+                        colaborar com uma pesquisa ou conhecer
+                        melhor nossas iniciativas?
+                    </p>
+
+                    <div class="contact-item">
+
+                        <div class="contact-icon">✉</div>
+
+                        <div>
+                            <strong>E-mail</strong>
+                            <span>
+                                projeto@universidade.edu.br
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="contact-item">
+
+                        <div class="contact-icon">📍</div>
+
+                        <div>
+                            <strong>Localização</strong>
+                            <span>
+                                Campus Universitário
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="contact-item">
+
+                        <div class="contact-icon">🎓</div>
+
+                        <div>
+                            <strong>Instituição</strong>
+                            <span>
+                                Universidade Federal
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <form class="contact-form reveal" id="contactForm">
+
+                    <div class="form-group">
+                        <label for="name">Nome</label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Seu nome"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="seu@email.com"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Assunto</label>
+
+                        <input
+                            type="text"
+                            id="subject"
+                            name="subject"
+                            placeholder="Como podemos ajudar?"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Mensagem</label>
+
+                        <textarea
+                            id="message"
+                            name="message"
+                            placeholder="Escreva sua mensagem..."
+                            required
+                        ></textarea>
+                    </div>
+
+                    <button type="submit" class="btn">
+                        Enviar mensagem →
+                    </button>
+
+                    <div
+                        class="form-message"
+                        id="formMessage"
+                    >
+                        Mensagem enviada com sucesso!
+                        Em uma aplicação real, este formulário
+                        deverá ser conectado a um backend.
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="footer">
+
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+
+                    <a href="#inicio" class="logo">
+                        <span class="logo-icon">I</span>
+                        <span style="color:white;">
+                            InovaCampus
+                        </span>
+                    </a>
+
+                    <p>
+                        Projeto universitário dedicado à pesquisa,
+                        inovação, extensão e transformação social.
+                    </p>
+
+                </div>
+
+
+                <div>
+
+                    <h3 class="footer-title">
+                        Navegação
+                    </h3>
+
+                    <ul class="footer-links">
+                        <li><a href="#inicio">Início</a></li>
+                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="#projetos">Projetos</a></li>
+                        <li><a href="#equipe">Equipe</a></li>
+                    </ul>
+
+                </div>
+
+
+                <div>
+
+                    <h3 class="footer-title">
+                        Projeto
+                    </h3>
+
+                    <ul class="footer-links">
+                        <li><a href="#objetivos">Objetivos</a></li>
+                        <li><a href="#projetos">Pesquisa</a></li>
+                        <li><a href="#projetos">Extensão</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+
+                </div>
+
+
+                <div>
+
+                    <h3 class="footer-title">
+                        Redes sociais
+                    </h3>
+
+                    <ul class="footer-links">
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">YouTube</a></li>
+                        <li><a href="#">Facebook</a></li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <span>
+                    © <span id="currentYear"></span>
+                    InovaCampus. Todos os direitos reservados.
+                </span>
+
+                <span>
+                    Projeto acadêmico universitário
+                </span>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+        // =========================
+        // MENU MOBILE
+        // =========================
+
+        const menuToggle = document.getElementById("menuToggle");
+        const navMenu = document.getElementById("navMenu");
+
+        menuToggle.addEventListener("click", () => {
+
+            const isOpen = navMenu.classList.toggle("active");
+
+            menuToggle.setAttribute(
+                "aria-expanded",
+                isOpen
+            );
+
+            menuToggle.textContent = isOpen ? "✕" : "☰";
+        });
+
+
+        // Fecha o menu ao clicar em um link
+
+        document.querySelectorAll(".nav-link").forEach(link => {
+
+            link.addEventListener("click", () => {
+
+                navMenu.classList.remove("active");
+
+                menuToggle.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+                menuToggle.textContent = "☰";
+            });
+
+        });
+
+
+        // =========================
+        // ANIMAÇÃO AO ROLAR
+        // =========================
+
+        const revealElements =
+            document.querySelectorAll(".reveal");
+
+        const observer = new IntersectionObserver(
+            entries => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add("active");
+
+                        observer.unobserve(entry.target);
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.12
+            }
+        );
+
+
+        revealElements.forEach(element => {
+            observer.observe(element);
+        });
+
+
+        // =========================
+        // FORMULÁRIO
+        // =========================
+
+        const contactForm =
+            document.getElementById("contactForm");
+
+        const formMessage =
+            document.getElementById("formMessage");
+
+        contactForm.addEventListener("submit", event => {
+
+            event.preventDefault();
+
+            formMessage.classList.add("show");
+
+            contactForm.reset();
+
+            setTimeout(() => {
+                formMessage.classList.remove("show");
+            }, 5000);
+
+        });
+
+
+        // =========================
+        // ANO AUTOMÁTICO
+        // =========================
+
+        document.getElementById("currentYear")
+            .textContent = new Date().getFullYear();
+
+
+        // =========================
+        // HEADER AO ROLAR
+        // =========================
+
+        const header =
+            document.querySelector(".header");
+
+        window.addEventListener("scroll", () => {
+
+            if (window.scrollY > 30) {
+
+                header.style.boxShadow =
+                    "0 5px 25px rgba(15, 23, 42, 0.08)";
+
+            } else {
+
+                header.style.boxShadow = "none";
+            }
+
+        });
+    </script>
+
+</body>
+</html>

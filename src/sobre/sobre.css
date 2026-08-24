@@ -1,0 +1,312 @@
+.about {
+  width: 100%;
+  padding: 100px 24px;
+  background: var(--background);
+  color: #0f172a;
+}
+
+.about__container {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+/* Header */
+
+.about__header {
+  max-width: 760px;
+  margin: 0 auto 70px;
+  text-align: center;
+}
+
+.about__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 14px;
+  margin-bottom: 18px;
+
+  color: var(--text-light);
+
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.about__header h2 {
+  margin: 0;
+  color: var(--text);
+
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.about__header h2 span {
+  color: #2563eb;
+}
+
+.about__header p {
+  max-width: 680px;
+  margin: 22px auto 0;
+
+  color: #64748b;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+/* Content */
+
+.about__content {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 70px;
+  align-items: start;
+}
+
+.about__text h3 {
+  margin: 0 0 20px;
+
+  font-size: 30px;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+}
+
+.about__text p {
+  margin: 0 0 18px;
+
+  color: #64748b;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+/* Cards */
+
+.about__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.about-card {
+  display: flex;
+  gap: 18px;
+  padding: 24px;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+
+  background: #ffffff;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.about-card:hover {
+  transform: translateY(-4px);
+
+  border-color: #bfdbfe;
+
+  box-shadow: 0 16px 35px rgba(15, 23, 42, 0.08);
+}
+
+.about-card__icon {
+  display: flex;
+  flex-shrink: 0;
+
+  width: 48px;
+  height: 48px;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 14px;
+
+  background: #eff6ff;
+
+  font-size: 22px;
+}
+
+.about-card h4 {
+  margin: 0 0 7px;
+
+  color: #0f172a;
+  font-size: 17px;
+}
+
+.about-card p {
+  margin: 0;
+
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+/* Technology */
+
+.about__technology {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 50px;
+
+  align-items: center;
+
+  margin-top: 80px;
+  padding: 40px;
+
+  border-radius: 24px;
+
+  background: #0f172a;
+  color: #ffffff;
+}
+
+.technology__label {
+  display: block;
+  margin-bottom: 10px;
+
+  color: #60a5fa;
+
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.technology__content h3 {
+  margin: 0 0 12px;
+
+  font-size: 28px;
+  letter-spacing: -0.03em;
+}
+
+.technology__content p {
+  max-width: 620px;
+  margin: 0;
+
+  color: #94a3b8;
+
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.technology__stack {
+  display: flex;
+  gap: 14px;
+}
+
+.technology {
+  display: flex;
+  min-width: 175px;
+
+  align-items: center;
+  gap: 13px;
+
+  padding: 14px;
+
+  border: 1px solid #334155;
+  border-radius: 14px;
+
+  background: #1e293b;
+}
+
+.technology__icon {
+  display: flex;
+
+  width: 44px;
+  height: 44px;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 11px;
+
+  font-weight: 800;
+}
+
+.technology__icon--react {
+  background: rgba(97, 218, 251, 0.12);
+  color: #61dafb;
+  font-size: 25px;
+}
+
+.technology__icon--typescript {
+  background: #3178c6;
+  color: white;
+  font-size: 15px;
+}
+
+.technology strong {
+  display: block;
+
+  color: #f8fafc;
+  font-size: 14px;
+}
+
+.technology span {
+  display: block;
+  margin-top: 3px;
+
+  color: #94a3b8;
+  font-size: 12px;
+}
+/* Responsive */
+
+@media (max-width: 900px) {
+  .about__content {
+    grid-template-columns: 1fr;
+    gap: 45px;
+    text-align: center;
+  }
+
+  .about__technology {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .technology__stack {
+    flex-wrap: wrap;
+  }
+
+  .about__footer {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+}
+
+@media (max-width: 600px) {
+  .about {
+    padding: 70px 18px;
+  }
+
+  .about__header {
+    margin-bottom: 50px;
+  }
+
+  .about__header p {
+    font-size: 16px;
+  }
+
+  .about-card {
+    padding: 20px;
+  }
+
+  .about__technology {
+    margin-top: 60px;
+    padding: 28px 22px;
+  }
+
+  .technology__stack {
+    flex-direction: column;
+  }
+
+  .technology {
+    width: 100%;
+  }
+
+  .about__footer {
+    margin-top: 60px;
+    padding-top: 45px;
+  }
+}
