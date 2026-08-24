@@ -8,6 +8,7 @@ import './index.css'
 
 import App from './App.tsx'
 import Projetos from './Projetos.tsx'
+import Publicacoes from './Publicacoes.tsx';
 import Equipe from './Equipe.tsx';
 import NotFound from './NotFound.tsx';
 
@@ -17,8 +18,9 @@ createRoot(document.getElementById('root')!).render(
       <Routes>
         <Route index element={<App />}/>
         <Route path="projetos" element={<Projetos />}/>
+        <Route path="publicacoes" element={<Publicacoes />}/>
         <Route path="equipe" element={<Equipe />}/>
-        <Route path="*" element={<NotFound />} />
+        {/*<Route path="*" element={<NotFound />} />*/}
       </Routes>
     </ThemeProvider>
   </BrowserRouter>,
