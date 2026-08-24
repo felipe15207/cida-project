@@ -10,7 +10,7 @@ import App from './App.tsx'
 import Projetos from './Projetos.tsx'
 import Publicacoes from './Publicacoes.tsx';
 import Equipe from './Equipe.tsx';
-import NotFound from './NotFound.tsx';
+//import NotFound from './NotFound.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
