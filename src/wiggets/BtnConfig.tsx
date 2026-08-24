@@ -48,6 +48,13 @@ export function PageSettings() {
                 Modo escuro
               </label>*/}
 
+              <label htmlFor="">Language
+              <select name="Language" id="">
+                <option value="">Português</option>
+                <option value="">English</option>
+              </select>
+              </label>
+
               <label>
                 Tamanho da fonte
                 <select defaultValue="medium">
